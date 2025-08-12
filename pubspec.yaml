@@ -1,0 +1,41 @@
+name: cinebox
+description: "A new Flutter project."
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.8.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  flutter_riverpod: ^3.0.0-dev.17
+  riverpod_annotation: ^3.0.0-dev.17
+  envied: ^1.2.0
+  retrofit: ^4.7.0
+  logger: ^2.6.1
+  json_annotation: ^4.9.0
+  dio: ^5.8.0+1
+  loading_animation_widget: ^1.3.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^5.0.0
+  riverpod_generator: ^3.0.0-dev.17
+  build_runner: ^2.5.4
+  custom_lint: ^0.8.0
+  riverpod_lint: ^3.0.0-dev.17
+  envied_generator: ^1.2.0
+  retrofit_generator: ^10.0.0
+  json_serializable: ^6.10.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
