@@ -1,51 +1,51 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'repositories_providers.dart';
+part of 'login_view_model.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-@ProviderFor(authRepository)
-const authRepositoryProvider = AuthRepositoryProvider._();
+@ProviderFor(loginViewModel)
+const loginViewModelProvider = LoginViewModelProvider._();
 
-final class AuthRepositoryProvider
-    extends $FunctionalProvider<AuthRepository, AuthRepository, AuthRepository>
-    with $Provider<AuthRepository> {
-  const AuthRepositoryProvider._()
+final class LoginViewModelProvider
+    extends $FunctionalProvider<LoginViewModel, LoginViewModel, LoginViewModel>
+    with $Provider<LoginViewModel> {
+  const LoginViewModelProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'authRepositoryProvider',
+        name: r'loginViewModelProvider',
         isAutoDispose: true,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$authRepositoryHash();
+  String debugGetCreateSourceHash() => _$loginViewModelHash();
 
   @$internal
   @override
-  $ProviderElement<AuthRepository> $createElement($ProviderPointer pointer) =>
+  $ProviderElement<LoginViewModel> $createElement($ProviderPointer pointer) =>
       $ProviderElement(pointer);
 
   @override
-  AuthRepository create(Ref ref) {
-    return authRepository(ref);
+  LoginViewModel create(Ref ref) {
+    return loginViewModel(ref);
   }
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(AuthRepository value) {
+  Override overrideWithValue(LoginViewModel value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<AuthRepository>(value),
+      providerOverride: $SyncValueProvider<LoginViewModel>(value),
     );
   }
 }
 
-String _$authRepositoryHash() => r'ecbdbdbac355ab3f6d77832b26ed143250b966d5';
+String _$loginViewModelHash() => r'8ddc9c8467e475804aca31657bf2001c60ae913e';
 
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
