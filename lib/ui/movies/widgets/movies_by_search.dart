@@ -14,7 +14,7 @@ class _MoviesBySearchState extends ConsumerState<MoviesBySearch> {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(bottom: 130),
-      child: MoviesBox(title: 'Filmes encontrados', vertical: true),
+      child: MoviesBox(title: 'Filmes encontrados', vertical: true, movies: []),
     );
   }
 }

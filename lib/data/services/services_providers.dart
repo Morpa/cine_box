@@ -1,4 +1,5 @@
 import 'package:cinebox/data/core/rest_client/backend_rest_client_provider.dart';
+import 'package:cinebox/data/core/rest_client/tmdb_rest_client_provider.dart';
 import 'package:cinebox/data/services/auth/auth_service.dart';
 import 'package:cinebox/data/services/google_signin/google_signin_service.dart';
 import 'package:cinebox/data/services/google_signin/google_signin_service_impl.dart';
@@ -30,6 +31,6 @@ AuthService authService(Ref ref) {
 @riverpod
 TmdbService tmdbService(Ref ref) {
   return TmdbService(
-    ref.read(backendRestClientProvider),
+    ref.read(tmdbRestClientProvider),
   );
 }
