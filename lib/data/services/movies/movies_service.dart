@@ -8,6 +8,6 @@ part 'movies_service.g.dart';
 abstract class MoviesService {
   factory MoviesService(Dio dio) = _MoviesService;
 
-  @GET('/favorites')
+  @GET('/favorite')
   Future<List<FavoriteMovieResponse>> getMyFavoritesMovies();
 }

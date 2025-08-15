@@ -27,7 +27,7 @@ class _MoviesService implements MoviesService {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/favorites',
+            '/favorite',
             queryParameters: queryParameters,
             data: _data,
           )
