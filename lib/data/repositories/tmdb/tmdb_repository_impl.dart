@@ -128,4 +128,27 @@ class TmdbRepositoryImpl implements TmdbRepository {
       );
     }
   }
+
+  @override
+  Future<Result<List<Movie>>> getMoviesByGenres({
+    String language = 'pt-BR',
+    required int genreId,
+  }) async {
+    try {
+      final data = await _tmdbService.discoverMovies(
+        language: language,
+        withGenres: genreId.toString(),
+      );
+      return Success(MovieMappers.mapToMovies(data));
+    } on DioException catch (err, stackTrace) {
+      log(
+        'Error on fetching getMoviesByGenres',
+        error: err,
+        stackTrace: stackTrace,
+      );
+      return Failure(
+        DataException(message: 'Error on fetching movies by genre'),
+      );
+    }
+  }
 }
