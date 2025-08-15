@@ -49,11 +49,11 @@ class AuthRepositoryImpl implements AuthRepository {
             error: err,
             stackTrace: stackTrace,
           );
-          return Failure(DataException('Auth failed'));
+          return Failure(DataException(message: 'Auth failed'));
         }
       case Failure<String>(:final error):
         log('Google Sign-In failed', name: 'AuthRepository', error: error);
-        return Failure(DataException('Google Sign-In failed'));
+        return Failure(DataException(message: 'Google Sign-In failed'));
     }
   }
 
