@@ -103,5 +103,53 @@ final class GetMoviesByGenreUsecaseProvider
 String _$getMoviesByGenreUsecaseHash() =>
     r'1c5e404369d8c0263feca80c0d12a699c706ae80';
 
+@ProviderFor(searchMoviesUsecase)
+const searchMoviesUsecaseProvider = SearchMoviesUsecaseProvider._();
+
+final class SearchMoviesUsecaseProvider
+    extends
+        $FunctionalProvider<
+          GetMoviesByNameUsecase,
+          GetMoviesByNameUsecase,
+          GetMoviesByNameUsecase
+        >
+    with $Provider<GetMoviesByNameUsecase> {
+  const SearchMoviesUsecaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'searchMoviesUsecaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$searchMoviesUsecaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<GetMoviesByNameUsecase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  GetMoviesByNameUsecase create(Ref ref) {
+    return searchMoviesUsecase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(GetMoviesByNameUsecase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<GetMoviesByNameUsecase>(value),
+    );
+  }
+}
+
+String _$searchMoviesUsecaseHash() =>
+    r'807eb8f34082c2796b8e3322e73594ecb13b1aa0';
+
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

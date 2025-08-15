@@ -151,4 +151,27 @@ class TmdbRepositoryImpl implements TmdbRepository {
       );
     }
   }
+
+  @override
+  Future<Result<List<Movie>>> searchMovies({
+    String language = 'pt-BR',
+    required String query,
+  }) async {
+    try {
+      final data = await _tmdbService.searchMovies(
+        language: language,
+        query: query,
+      );
+      return Success(MovieMappers.mapToMovies(data));
+    } on DioException catch (err, stackTrace) {
+      log(
+        'Error on fetching searchMovies',
+        error: err,
+        stackTrace: stackTrace,
+      );
+      return Failure(
+        DataException(message: 'Error on fetching search movies'),
+      );
+    }
+  }
 }
