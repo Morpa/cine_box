@@ -1,60 +1,70 @@
 import 'package:cinebox/ui/core/themes/colors.dart';
+import 'package:cinebox/ui/movies/commands/get_genres_command.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class GenresBox extends ConsumerStatefulWidget {
-  const GenresBox({super.key});
-
-  @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _GenresBoxState();
-}
-
-class _GenresBoxState extends ConsumerState<GenresBox> {
+class GenresBox extends ConsumerWidget {
   final selectedGenre = ValueNotifier(0);
 
+  GenresBox({super.key});
+
   @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 25,
-      child: ListView.builder(
-        padding: EdgeInsets.only(left: 16),
-        physics: BouncingScrollPhysics(),
-        scrollDirection: Axis.horizontal,
-        itemCount: 30,
-        itemBuilder: (context, index) {
-          return InkWell(
-            borderRadius: BorderRadius.circular(20),
-            onTap: () {
-              selectedGenre.value = index;
-            },
-            child: ValueListenableBuilder(
-              valueListenable: selectedGenre,
-              builder: (_, value, _) {
-                return Container(
-                  margin: EdgeInsets.only(right: 8),
-                  decoration: BoxDecoration(
-                    color: value == index
-                        ? AppColors.redColor
-                        : AppColors.darkGrey,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  padding: EdgeInsets.symmetric(horizontal: 12),
-                  child: Center(
-                    child: Text(
-                      'Genre $index',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                );
-              },
-            ),
-          );
-        },
+  Widget build(BuildContext context, WidgetRef ref) {
+    final genres = ref.watch(getGenresCommandProvider);
+
+    return genres.when(
+      loading: () => const Center(
+        child: CircularProgressIndicator(
+          strokeWidth: 1,
+        ),
       ),
+      error: (error, stackTrace) =>
+          const Center(child: Text('Erro ao buscar generos')),
+      data: (data) {
+        return SizedBox(
+          height: 25,
+          child: ListView.builder(
+            padding: EdgeInsets.only(left: 16),
+            physics: BouncingScrollPhysics(),
+            scrollDirection: Axis.horizontal,
+            itemCount: data.length,
+            itemBuilder: (context, index) {
+              final genre = data[index];
+              return InkWell(
+                borderRadius: BorderRadius.circular(20),
+                onTap: () {
+                  selectedGenre.value = genre.id;
+                },
+                child: ValueListenableBuilder(
+                  valueListenable: selectedGenre,
+                  builder: (_, value, _) {
+                    return Container(
+                      margin: EdgeInsets.only(right: 8),
+                      decoration: BoxDecoration(
+                        color: value == genre.id
+                            ? AppColors.redColor
+                            : AppColors.darkGrey,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      padding: EdgeInsets.symmetric(horizontal: 12),
+                      child: Center(
+                        child: Text(
+                          genre.name,
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              );
+            },
+          ),
+        );
+      },
     );
   }
 }

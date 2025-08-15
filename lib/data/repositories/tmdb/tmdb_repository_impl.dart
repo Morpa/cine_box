@@ -4,6 +4,7 @@ import 'package:cinebox/core/result/result.dart';
 import 'package:cinebox/data/exceptions/data_exception.dart';
 import 'package:cinebox/data/mappers/movie_mappers.dart';
 import 'package:cinebox/data/services/tmdb/tmdb_service.dart';
+import 'package:cinebox/domain/models/genre.dart';
 import 'package:cinebox/domain/models/movie.dart';
 import 'package:dio/dio.dart';
 
@@ -104,6 +105,26 @@ class TmdbRepositoryImpl implements TmdbRepository {
       );
       return Failure(
         DataException(message: 'Error on fetching upcoming movies'),
+      );
+    }
+  }
+
+  @override
+  Future<Result<List<Genre>>> getGenres({String language = 'pt-BR'}) async {
+    try {
+      final data = await _tmdbService.getMoviesGenres(language: language);
+      final genres = data.genres
+          .map((genre) => Genre(id: genre.id, name: genre.name))
+          .toList();
+      return Success(genres);
+    } on DioException catch (err, stackTrace) {
+      log(
+        'Error on fetching getGenres',
+        error: err,
+        stackTrace: stackTrace,
+      );
+      return Failure(
+        DataException(message: 'Error on fetching movie genres'),
       );
     }
   }
