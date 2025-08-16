@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cinebox/ui/core/commands/favorite_movie_command.dart';
+import 'package:cinebox/ui/core/commands/remove_favorite_movie_command.dart';
 import 'package:cinebox/ui/core/commands/save_favorite_movie_command.dart';
 import 'package:cinebox/ui/core/themes/colors.dart';
 import 'package:cinebox/ui/core/widgets/loader_messages.dart';
@@ -51,6 +52,19 @@ class _MovieCardState extends ConsumerState<MovieCard> with LoaderAndMessage {
           error: (error, stackTrace) {
             showErrorSnackBar(
               'Desculpe, não foi possível salvar o filme como favorito.',
+            );
+          },
+        );
+      },
+    );
+
+    ref.listen(
+      removeFavoriteMovieCommandProvider(widget.key!, widget.id),
+      (_, next) {
+        next.whenOrNull(
+          error: (error, stackTrace) {
+            showErrorSnackBar(
+              'Desculpe, não foi possível remover o filme como favorito.',
             );
           },
         );

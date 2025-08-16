@@ -56,7 +56,7 @@ final class MovieCardViewModelProvider
 }
 
 String _$movieCardViewModelHash() =>
-    r'4e522702a14edb3a94e68e0e035da2469aedd0b1';
+    r'c96653d20f4ec5ee5293a093406b4529dc3b3cb1';
 
 final class MovieCardViewModelFamily extends $Family
     with

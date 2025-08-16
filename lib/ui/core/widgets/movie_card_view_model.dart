@@ -1,3 +1,4 @@
+import 'package:cinebox/ui/core/commands/remove_favorite_movie_command.dart';
 import 'package:cinebox/ui/core/commands/save_favorite_movie_command.dart';
 import 'package:flutter/foundation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -20,6 +21,8 @@ class MovieCardViewModel extends _$MovieCardViewModel {
       ref
           .read(saveFavoriteMovieCommandProvider(key, id).notifier)
           .execute(id: id, title: title, posterPath: posterPath, year: year);
-    } else {}
+    } else {
+      ref.read(removeFavoriteMovieCommandProvider(key, id).notifier).execute();
+    }
   }
 }
