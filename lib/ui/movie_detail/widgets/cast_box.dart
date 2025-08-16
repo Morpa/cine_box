@@ -1,10 +1,13 @@
+import 'package:cinebox/domain/models/movie_detail.dart';
 import 'package:cinebox/ui/core/themes/colors.dart';
 import 'package:cinebox/ui/core/themes/text_styles.dart';
 import 'package:cinebox/ui/movie_detail/widgets/actor_card.dart';
 import 'package:flutter/material.dart';
 
 class CastBox extends StatelessWidget {
-  const CastBox({super.key});
+  final MovieDetail movieDetail;
+
+  const CastBox({super.key, required this.movieDetail});
 
   @override
   Widget build(BuildContext context) {
@@ -22,13 +25,14 @@ class CastBox extends StatelessWidget {
             height: 150,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: 10,
+              itemCount: movieDetail.cast.length,
               itemBuilder: (context, index) {
+                final actor = movieDetail.cast[index];
                 return ActorCard(
                   imageUrl:
-                      'https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Adrien_Brody-61584.jpg/250px-Adrien_Brody-61584.jpg',
-                  name: 'Actor Name',
-                  character: 'Character Name',
+                      'http://image.tmdb.org/t/p/w185${actor.profilePath}',
+                  name: actor.name,
+                  character: actor.character,
                 );
               },
             ),

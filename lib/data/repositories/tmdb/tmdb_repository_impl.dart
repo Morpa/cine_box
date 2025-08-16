@@ -148,8 +148,7 @@ class TmdbRepositoryImpl implements TmdbRepository {
     try {
       final response = await _tmdbService.getMovieDetails(
         movieId,
-        appendToResponse:
-            'credits, videos,recommendations,release_dates,images',
+        appendToResponse: 'credits,videos,recommendations,release_dates,images',
       );
 
       final movieDetail = MovieDetail(
@@ -160,7 +159,9 @@ class TmdbRepositoryImpl implements TmdbRepository {
         voteAverage: response.voteAverage,
         voteCount: response.voteCount,
         images: response.images.backdrops
-            .map((i) => 'https://image.tmdb.org/t/p/w342${i.filePath}')
+            .map(
+              (i) => 'https://image.tmdb.org/t/p/w342/${i.filePath}',
+            )
             .toList(),
         cast: response.credits.cast
             .map(
