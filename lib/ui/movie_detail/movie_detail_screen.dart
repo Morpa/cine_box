@@ -2,6 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cinebox/ui/core/themes/colors.dart';
 import 'package:cinebox/ui/core/themes/text_styles.dart';
 import 'package:cinebox/ui/movie_detail/widgets/cast_box.dart';
+import 'package:cinebox/ui/movie_detail/widgets/movie_trailer.dart';
+import 'package:cinebox/ui/movie_detail/widgets/rating_panel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_stars/flutter_rating_stars.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -78,7 +80,12 @@ class _MovieDetailScreenState extends ConsumerState<MovieDetailScreen> {
                     'Luca é um jovem monstro marinho que vive com sua família em uma cidade subaquática. Ele sonha em explorar o mundo acima da superfície, mas sua vida muda quando conhece Alberto, um outro monstro marinho que também deseja conhecer a terra firme. Juntos, eles embarcam em uma aventura emocionante e descobrem o valor da amizade e da coragem.',
                     style: AppTextStyles.regularSmall,
                   ),
-                  const CastBox(),
+                  CastBox(),
+                  MovieTrailer(),
+                  RatingPanel(
+                    voteAverage: 4.9,
+                    voteCount: 1200,
+                  ),
                 ],
               ),
             ),
